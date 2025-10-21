@@ -1,0 +1,25 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Round {
+  id        Int      @id @default(autoincrement())
+  active    Boolean  @default(true)
+  numbers   String?
+  tickets   Ticket[]
+  createdAt DateTime @default(now())
+}
+
+model Ticket {
+  id        String   @id @default(uuid())
+  document  String
+  numbers   String
+  roundId   Int
+  round     Round    @relation(fields: [roundId], references: [id])
+  createdAt DateTime @default(now())
+}

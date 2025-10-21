@@ -1,0 +1,8 @@
+{
+  "domain": "tvoj-auth0-domain",
+  "clientId": "tvoj-client-id",
+  "authorizationParams": {
+    "redirect_uri": "https://tvoja-aplikacija.onrender.com"
+  },
+  "audience": "https://api.loto-app.com"
+}
