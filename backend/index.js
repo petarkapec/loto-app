@@ -171,7 +171,7 @@ app.get('/status', async (req, res) => {
 app.get('/last-finished-round', async (req, res) => {
   try {
     const last = await prisma.round.findFirst({
-      where: { active: false, results: { not: [] } },
+      where: { active: false, results: { hasSome: true } },
       orderBy: { id: 'desc' }
     });
     if (!last) return res.json({});

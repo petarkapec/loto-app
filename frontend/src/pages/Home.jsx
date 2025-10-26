@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { Link } from 'react-router-dom'
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -8,7 +9,6 @@ export default function Home(){
 
   useEffect(()=>{
     fetch(`${API_URL}/status`).then(r=>r.json()).then(setStatus).catch(()=>setStatus(null))
-    // Dohvati zadnje zatvoreno kolo s rezultatima
     fetch(`${API_URL}/last-finished-round`).then(r=>r.json()).then(setLastRound).catch(()=>setLastRound(null))
   },[])
 
@@ -47,7 +47,7 @@ export default function Home(){
         )}
       </div>
       <div style={{textAlign:'center'}}>
-        <a href="/buy" style={{padding:'10px 24px',background:'#2d6cdf',color:'#fff',borderRadius:6,textDecoration:'none',fontWeight:'bold'}}>Uplati listić</a>
+        <Link to="/buy" style={{padding:'10px 24px',background:'#2d6cdf',color:'#fff',borderRadius:6,textDecoration:'none',fontWeight:'bold'}}>Uplati listić</Link>
       </div>
     </div>
   )
