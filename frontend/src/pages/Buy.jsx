@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 
+const API_URL = import.meta.env.VITE_API_URL
+
 export default function Buy(){
   const { getAccessTokenSilently } = useAuth0()
   const [nationalId,setNationalId]=useState('')
@@ -17,7 +19,7 @@ export default function Buy(){
     const nums = numbers.split(',').map(s=>s.trim()).filter(Boolean).map(Number)
     try{
       const token = await getAccessTokenSilently()
-      const res = await fetch('/api/tickets',{
+      const res = await fetch(`${API_URL}/tickets`,{
         method:'POST',
         headers:{
           'Content-Type':'application/json',

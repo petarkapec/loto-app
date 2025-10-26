@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react'
 
+const API_URL = import.meta.env.VITE_API_URL
+
 export default function Home(){
   const [status, setStatus] = useState(null)
-  useEffect(()=>{fetch('/api/status').then(r=>r.json()).then(setStatus).catch(()=>setStatus(null))},[])
+  useEffect(()=>{fetch(`${API_URL}/status`).then(r=>r.json()).then(setStatus).catch(()=>setStatus(null))},[])
 
   return (
     <div style={{padding:20}}>
