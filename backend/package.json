@@ -7,7 +7,7 @@
     "dev": "nodemon index.js",
     "prisma:migrate": "prisma migrate dev --name init",
     "prisma:generate": "prisma generate",
-    "build": "prisma generate && prisma migrate deploy"
+    "build": "npm install && prisma generate && prisma migrate deploy"
   },
   "dependencies": {
     "@prisma/client": "5.6.0",
@@ -18,9 +18,7 @@
     "express-oauth2-jwt-bearer": "1.6.0",
     "jwks-rsa": "3.1.0",
     "qrcode": "1.5.3",
-    "uuid": "9.0.1"
-  },
-  "devDependencies": {
+    "uuid": "9.0.1",
     "nodemon": "3.0.1",
     "prisma": "5.6.0"
   }
