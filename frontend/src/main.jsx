@@ -30,7 +30,7 @@ function Nav() {
   return (
     <nav style={{padding: '10px', display: 'flex', justifyContent: 'space-between'}}>
       <div>
-        <Link to="/">Home</Link> {isAuthenticated && <> | <Link to="/buy">Buy Ticket</Link></>}
+        <Link to="/">Home</Link> {isAuthenticated && <> | <Link to="/buy">Uplati listić</Link></>}
       </div>
       <div>
         {isAuthenticated ? (
