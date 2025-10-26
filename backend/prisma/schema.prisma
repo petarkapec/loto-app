@@ -1,25 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
 model Round {
-  id        Int      @id @default(autoincrement())
-  active    Boolean  @default(true)
-  numbers   String?
-  tickets   Ticket[]
-  createdAt DateTime @default(now())
+  id         Int       @id @default(autoincrement())
+  createdAt  DateTime  @default(now())
+  active     Boolean   @default(false)
+  results    Int[]     @default([])
+  tickets    Ticket[]
 }
 
 model Ticket {
-  id        String   @id @default(uuid())
-  document  String
-  numbers   String
-  roundId   Int
-  round     Round    @relation(fields: [roundId], references: [id])
-  createdAt DateTime @default(now())
+  id         String   @id @default(uuid())
+  nationalId String   @db.VarChar(20)
+  numbers    Int[]
+  createdAt  DateTime @default(now())
+  roundId    Int
+  round      Round    @relation(fields: [roundId], references: [id])
+  userId     String   @db.VarChar(100)  // Auth0 user ID (sub claim)
+  userEmail  String?  @db.VarChar(255)  // Optional user email
 }
