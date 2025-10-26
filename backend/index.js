@@ -168,6 +168,23 @@ app.get('/status', async (req, res) => {
   }
 });
 
+app.get('/last-finished-round', async (req, res) => {
+  try {
+    const last = await prisma.round.findFirst({
+      where: { active: false, results: { not: [] } },
+      orderBy: { id: 'desc' }
+    });
+    if (!last) return res.json({});
+    res.json({
+      id: last.id,
+      results: last.results || []
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
